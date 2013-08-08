@@ -48,14 +48,10 @@ module Rails3JQueryAutocomplete
 
           term = params[:term]
 
-          if term && !term.blank?
-            #allow specifying fully qualified class name for model object
-            class_name = options[:class_name] || object
-            items = get_autocomplete_items(:model => get_object(class_name), \
-              :options => options, :term => term, :method => method)
-          else
-            items = {}
-          end
+          #allow specifying fully qualified class name for model object
+          class_name = options[:class_name] || object
+          items = get_autocomplete_items(:model => get_object(class_name), \
+            :options => options, :term => term, :method => method)
           
           items = yield items, params
 
